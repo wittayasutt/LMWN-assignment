@@ -31,7 +31,7 @@
 
 ### API-SPEC
 
-**Guide**
+**Guide Detail**
 
 ```ts
   id: string
@@ -88,3 +88,15 @@
 ```
 
 ### Example Data
+
+**Guide Detail**
+
+```json
+
+```
+
+**Restaurant**
+
+```json
+
+```
