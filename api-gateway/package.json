@@ -1,0 +1,11 @@
+{
+  "name": "api-gateway",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --loader ts-node/esm index.ts",
+    "build": "tsc -b && vite build",
+    "lint": "eslint ."
+  }
+}
