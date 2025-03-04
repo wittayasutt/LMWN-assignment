@@ -1,10 +1,29 @@
 # Frontend Assignment 2025
 
-# รวมลายแทง ร้านลับ
+# รวมลายแทง ร้านลับ (Wongnai Guide)
 
 ## Requirement
 
 ### WEB
+
+![image](./ui-example.jpg)
+
+**Guide Detail**
+
+- [ ] name
+- [ ] description
+- [ ] tags
+- [ ] cover photo
+
+**Guide Restaurant**
+
+- [ ] photo
+- [ ] name
+- [ ] guide description
+- [ ] address
+- [ ] contact
+- [ ] rating
+- [ ] category
 
 ### API-GW
 
@@ -54,6 +73,7 @@
   lat: number
   lng: number
   phoneNo: string
+  categories: string[]
   line: string
   instagram: string
   facebook: string
@@ -66,3 +86,5 @@
   delivery: boolean
   pickup: boolean
 ```
+
+### Example Data
