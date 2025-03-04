@@ -1,6 +1,4 @@
-# Frontend Assignment 2025
-
-# รวมลายแทง ร้านลับ (Wongnai Guide)
+# Frontend Assignment 2025 - รวมลายแทง ร้านลับ (Wongnai Guide)
 
 ## Requirement
 
