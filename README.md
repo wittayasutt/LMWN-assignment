@@ -48,13 +48,18 @@
   updatedAt: string
   items: {
     id: string
-    description: string
-    restaurantId: string
-    photos: {
-      id: string,
-      smallUrl: string
-      largeUrl: string
-    }[]
+  }[]
+```
+
+**Item**
+```ts
+  id: string
+  description: string
+  restaurantId: string
+  photos: {
+    id: string,
+    smallUrl: string
+    largeUrl: string
   }[]
 ```
 
