@@ -29,6 +29,11 @@
 
 ### API-SPEC
 
+**Guide List**
+```ts
+  guideIds: string[]
+```
+
 **Guide Detail**
 
 ```ts
@@ -46,12 +51,10 @@
   writeDate: string
   createdAt: string
   updatedAt: string
-  items: {
-    id: string
-  }[]
+  itemIds: string[]
 ```
 
-**Item**
+**Guide Item**
 ```ts
   id: string
   description: string
