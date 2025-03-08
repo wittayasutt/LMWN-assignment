@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --loader ts-node/esm index.ts",
-    "build": "tsc -b && vite build",
+    "build": "tsc ./index.ts",
     "lint": "eslint ."
   }
 }

@@ -12,7 +12,6 @@
     "typescript": "5.7.2",
     "typescript-eslint": "8.24.1"
   },
-  "packageManager": "pnpm@10.5.0",
   "engines": {
     "node": ">=20"
   }
