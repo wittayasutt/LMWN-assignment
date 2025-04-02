@@ -17,7 +17,8 @@ You should prepare your development environment by following the checklist below
 
 ## Run project
 
-We have already initialized all of the projects for you. The data-server is ready to run to be used in development of the api-gateway. For the api-gateway and web, it's your responsibility to develop both projects to ensure that all of them can be run successfully.
+We have already initialized all of the projects for you. The data-server is embedded inside the api-gateway project and will automatically be run when running the api-gateway.
+For the api-gateway and web, it's your responsibility to develop both projects to ensure that all of them can be run successfully.
 
 You have to develop api-gateway and web based on the given requirements above.
 We will run the project you submitted by using this script.
@@ -29,14 +30,14 @@ Please make sure this script can run both projects at the root folder correctly.
    pnpm install
    ```
 
-   หรือ
-
-   ```sh
-   yarn
-   ```
-
 2. Run all projects
 
    ```sh
    pnpm run -r dev
    ```
+
+## FAQ
+
+### 1. What can be edited/modified in the project?
+
+Everything can be edited/modified as long as you can meet the given requirements and the project can be run successfully.
