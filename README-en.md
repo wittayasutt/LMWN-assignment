@@ -10,8 +10,8 @@ In this assignment, you need to create a web application "Guide to Hidden Gems",
 
 Prepare your development environment with the following checklist
 
-- Code editor (VS Code recommended)
-- Node.js v20 or later (recommended to install via a version manager such as `nvm`)
+- Code editor ([VS Code](https://code.visualstudio.com/), [Cursor](https://cursor.com/) recommended)
+- Node.js v20 or later (recommended to install via a version manager such as [์NVM](https://github.com/nvm-sh/nvm))
 
 ## Tasks
 
@@ -54,7 +54,7 @@ In this task, you need to create a React web application to display restaurant g
 
 #### Requirements
 
-Create a web application that connects to the API Gateway to display restaurant guides **considering good UX and UI for users**, making users feel that using our web is more convenient and faster than searching directly from search engines.
+Create a web application that connects to the API Gateway to display restaurant guides **considering good UX and UI for users**, making users feel that using our web is more convenient and faster.
 
 In restaurant guides, there are mainly 2 essential features: Guide Detail and Guide Restaurant
 
@@ -435,3 +435,19 @@ We have provided the web and API Gateway projects along with initial scripts. yo
 ### 1. What can be edited/modified in the project?
 
 All parts can be modified freely, provided the requirements are met and the project functions correctly.
+
+### 2. Can I use other libraries or frameworks?
+
+Yes, you can use any libraries, frameworks, or customize the project however you like.
+
+### 3. Can I use an Agent or AI to help with the coding?
+
+Yes, feel free to use them. Nowadays, our frontend developers at LMWN also use these tools to improve productivity.
+
+### 4. What if I take longer than the given time to complete the test?
+
+It often happens that candidates don’t have enough time to finish on schedule. Just let us know in advance or explain the situation. In many cases, we are flexible with deadlines.
+
+### 5. What if I can’t send the zipped project through the provided submission channel?
+
+You can upload it to any cloud service and share the download link via email. (However, we recommend trying the provided submission channel first.)
