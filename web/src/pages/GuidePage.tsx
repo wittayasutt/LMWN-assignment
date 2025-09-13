@@ -31,7 +31,9 @@ function GuidePage() {
 
 	return (
 		<div className="container min-h-screen">
-			<Link to="/">ไปหน้าหลัก</Link>
+			<Link to="/" className="font-title">
+				ไปหน้าหลัก
+			</Link>
 			<GuideItem guide={guide} isTitle />
 			<Separator className="my-8" />
 			<RestaurantList />

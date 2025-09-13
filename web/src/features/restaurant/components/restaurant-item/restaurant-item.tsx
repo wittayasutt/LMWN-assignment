@@ -18,15 +18,15 @@ function RestaurantItem({ restaurant }: RestaurantItemProps) {
 			<div className="my-2 flex flex-row justify-between">
 				<div className="flex flex-1 flex-row items-end">
 					<h4 className="leading-none">{restaurant.name}</h4>
-					<p className="ml-1 text-sm leading-none text-gray-500">
+					<p className="font-title ml-1 text-sm leading-none text-gray-500">
 						(rating {restaurant.rating})
 					</p>
 				</div>
 				<RestaurantItemSocial social={social} />
 			</div>
 			<p>{restaurant.description}</p>
-			<p>คิดต่อ: {restaurant.phoneNo}</p>
-			<p>ที่อยู่: {restaurant.address}</p>
+			<p className="font-title">คิดต่อ: {restaurant.phoneNo}</p>
+			<p className="font-title">ที่อยู่: {restaurant.address}</p>
 		</div>
 	);
 }

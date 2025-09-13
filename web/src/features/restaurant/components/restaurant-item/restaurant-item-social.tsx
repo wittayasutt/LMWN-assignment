@@ -67,7 +67,7 @@ function RestaurantItemSocial({ social }: RestaurantItemSocialProps) {
 						item && (
 							<DropdownMenuItem
 								key={item.label}
-								className="cursor-pointer"
+								className="font-title cursor-pointer"
 								onClick={() => handleCopy(item.url)}
 							>
 								<item.icon />
