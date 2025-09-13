@@ -1,8 +1,17 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import GuidePage from './pages/GuidePage';
+import NotFoundPage from './pages/NotFoundPage';
+
 function App() {
 	return (
-		<>
-			<h1 className="text-3xl font-bold underline">Hello world!</h1>
-		</>
+		<Router>
+			<Routes>
+				<Route path="/" element={<MainPage />} />
+				<Route path="/guide/:id" element={<GuidePage />} />
+				<Route path="*" element={<NotFoundPage />} />
+			</Routes>
+		</Router>
 	);
 }
 
