@@ -1,16 +1,21 @@
-import { Photo } from '@/types';
+import type { PhotoType } from '@/types';
 
-export type RestaurantWorkingHour = {
+export type RestaurantWorkingHourType = {
 	day: number;
 	open: string;
 	close: string;
 };
 
-export type Restaurant = {
+export type RestaurantSocialType = {
+	instagram?: string;
+	facebook?: string;
+};
+
+export type RestaurantType = RestaurantSocialType & {
 	id: string;
 	name: string;
 	description: string;
-	photos: Photo[];
+	photos: PhotoType[];
 	rating: number;
 	numberOfReviews: number;
 	url: string;
@@ -19,9 +24,7 @@ export type Restaurant = {
 	lng: number;
 	phoneNo: string;
 	categories: string[];
-	instagram: string;
-	facebook: string;
-	workingHours: RestaurantWorkingHour[];
+	workingHours: RestaurantWorkingHourType[];
 	official: boolean;
 	delivery: boolean;
 	pickup: boolean;

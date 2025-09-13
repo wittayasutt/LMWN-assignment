@@ -1,12 +1,12 @@
-import { Photo } from '@/types';
+import type { PhotoType } from '@/types';
 
-export type Guide = {
+export type GuideType = {
 	id: string;
 	title: string;
 	socialTitle: string;
 	shortDescription: string;
 	description: string;
-	coverPhoto: Photo;
+	coverPhoto: PhotoType;
 	tags: string[];
 	writeDate: string;
 	createdAt: string;

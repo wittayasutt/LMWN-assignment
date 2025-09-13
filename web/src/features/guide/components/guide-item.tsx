@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
+
 import { Tags } from '@/components/tags';
 
-import type { Guide as GuideType } from '../types';
+import type { GuideType } from '../types';
 
 type GuideItemProps = {
 	guide: GuideType;

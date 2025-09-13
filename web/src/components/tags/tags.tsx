@@ -1,5 +1,6 @@
-import { Badge } from '@/components/ui/badge';
 import { uniq } from 'lodash';
+
+import { Badge } from '@/components/ui/badge';
 
 function Tags({ tags }: { tags: string[] }) {
 	const uniqueTags: string[] = uniq(tags);

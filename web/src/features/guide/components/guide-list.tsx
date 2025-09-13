@@ -1,6 +1,6 @@
 import GuideItem from './guide-item';
 
-import type { Guide as GuideType } from '../types';
+import type { GuideType } from '../types';
 
 // TODO: remove mock data
 const mockData: GuideType[] = [
