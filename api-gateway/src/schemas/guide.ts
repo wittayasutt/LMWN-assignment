@@ -13,5 +13,11 @@ export const guideSchema = z.object({
 	writeDate: z.string(),
 	createdAt: z.string(),
 	updatedAt: z.string(),
+});
+
+export const guideListSchema = z.array(guideSchema);
+
+export const guideDetailSchema = z.object({
+	...guideSchema.shape,
 	items: z.array(z.string()),
 });

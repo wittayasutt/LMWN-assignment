@@ -4,6 +4,8 @@ import { Separator } from '@/components/ui/separator';
 import GuideItem from '@/features/guide/components/guide-item';
 import RestaurantList from '@/features/restaurant/components/restaurant-list';
 
+import { useQueryGuideItem } from '@/features/guide/api';
+
 // TODO: remove mock data
 const guideItem = {
 	id: 'e1bfd2d3-f0fb-470e-bdd3-be884fdd8dfb',
@@ -27,6 +29,7 @@ const guideItem = {
 function GuidePage() {
 	// TODO: fetch guide item from API
 	const { id } = useParams<{ id: string }>();
+	const { data } = useQueryGuideItem(id);
 	const guide = guideItem;
 
 	return (

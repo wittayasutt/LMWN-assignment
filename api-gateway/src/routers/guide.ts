@@ -1,31 +1,27 @@
+import { z } from 'zod';
 import { TRPCError } from '@trpc/server';
 
-import { guideRouter } from './guide';
-import { restaurantRouter } from './restaurant';
 import { fetchGuideList, fetchGuideItem } from '../api';
 import { guideSchema, guideListSchema } from '../schemas';
 import { router, publicProcedure } from '../utils/trpc';
 
-export const appRouter = router({
-	getUser: publicProcedure.output(guideListSchema).query(async () => {
+export const guideRouter = router({
+	list: publicProcedure.output(guideListSchema).query(async () => {
 		try {
 			const { data: guideIds } = await fetchGuideList();
 
-			const response = await Promise.all(
+			return await Promise.all(
 				guideIds.map(async (guideId: string) => {
 					const { data: guide } = await fetchGuideItem(guideId);
 					return guideSchema.parse(guide);
 				}),
 			);
-
-			return response;
 		} catch (error) {
 			console.error(error);
 			throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR' });
 		}
 	}),
-	guide: guideRouter,
-	restaurant: restaurantRouter,
+	item: publicProcedure.input(z.string()).query(({ input }) => {
+		return { name: 'item', id: input };
+	}),
 });
-
-export type AppRouter = typeof appRouter;
