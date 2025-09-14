@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Tags } from '@/components/tags';
 import { Button } from '@/components/ui/button';
 
+import { useQueryGuildList } from '../api/use-query-guide-lis';
 import type { GuideType } from '../types';
 
 type GuideItemProps = {
@@ -11,6 +12,8 @@ type GuideItemProps = {
 };
 
 function GuideItem({ guide, isTitle = false }: GuideItemProps) {
+	const { data } = useQueryGuildList();
+
 	const content = (
 		<>
 			{isTitle ? <h1>{guide.title}</h1> : <h2>{guide.title}</h2>}

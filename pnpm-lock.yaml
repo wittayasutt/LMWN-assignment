@@ -78,6 +78,15 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.87.4
         version: 5.87.4(react@19.0.0)
+      '@trpc/client':
+        specifier: ^11.5.1
+        version: 11.5.1(@trpc/server@11.5.1)(typescript@5.7.2)
+      '@trpc/server':
+        specifier: ^11.5.1
+        version: 11.5.1(typescript@5.7.2)
+      '@trpc/tanstack-react-query':
+        specifier: ^11.5.1
+        version: 11.5.1(@tanstack/react-query@5.87.4)(@trpc/client@11.5.1)(@trpc/server@11.5.1)(react-dom@19.0.0)(react@19.0.0)(typescript@5.7.2)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -1773,11 +1782,39 @@ packages:
       react: 19.0.0
     dev: false
 
+  /@trpc/client@11.5.1(@trpc/server@11.5.1)(typescript@5.7.2):
+    resolution: {integrity: sha512-7I6JJ1I1lxv3S87ht3FAIZi0XxQa7hnQ9K+Oo5BH7cGO8ZtWe9Ftq6ItdkuDfpsnsRPcR2h158AMWbNs/iptqg==}
+    peerDependencies:
+      '@trpc/server': 11.5.1
+      typescript: '>=5.7.2'
+    dependencies:
+      '@trpc/server': 11.5.1(typescript@5.7.2)
+      typescript: 5.7.2
+    dev: false
+
   /@trpc/server@11.5.1(typescript@5.7.2):
     resolution: {integrity: sha512-KIDzHRS5m8U1ncPwjgtOtPWK9lNO0kYL7b+lnvKXRqowSAQIEC/z6y7g/dkt4Aqv3DKI/STLydt2/afrP1QrxQ==}
     peerDependencies:
       typescript: '>=5.7.2'
     dependencies:
+      typescript: 5.7.2
+    dev: false
+
+  /@trpc/tanstack-react-query@11.5.1(@tanstack/react-query@5.87.4)(@trpc/client@11.5.1)(@trpc/server@11.5.1)(react-dom@19.0.0)(react@19.0.0)(typescript@5.7.2):
+    resolution: {integrity: sha512-1irzKOXhasMq09pHvLqJPTTwaEULIoNfFtoeLNkLnOVHLGvfHkS9qvpVjinRyW1aiQi7OqFDeaUDrQhtbP6tVA==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.80.3
+      '@trpc/client': 11.5.1
+      '@trpc/server': 11.5.1
+      react: '>=18.2.0'
+      react-dom: '>=18.2.0'
+      typescript: '>=5.7.2'
+    dependencies:
+      '@tanstack/react-query': 5.87.4(react@19.0.0)
+      '@trpc/client': 11.5.1(@trpc/server@11.5.1)(typescript@5.7.2)
+      '@trpc/server': 11.5.1(typescript@5.7.2)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
       typescript: 5.7.2
     dev: false
 

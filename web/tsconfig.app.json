@@ -4,7 +4,8 @@
 		"paths": {
 			"@/*": ["./*"],
 			"@hooks": ["src/hooks"],
-			"@types": ["src/types"]
+			"@types": ["src/types"],
+			"@utils": ["src/utils"]
 		}
 	}
 }
