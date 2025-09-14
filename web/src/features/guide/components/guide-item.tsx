@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { Tags } from '@/components/tags';
+import { Button } from '@/components/ui/button';
 
 import type { GuideType } from '../types';
 
@@ -32,7 +33,14 @@ function GuideItem({ guide, isTitle = false }: GuideItemProps) {
 		return content;
 	}
 
-	return <Link to={`/guide/${guide.id}`}>{content}</Link>;
+	return (
+		<Link to={`/guide/${guide.id}`}>
+			{content}
+			<div className="mb-8 mt-4 flex justify-center">
+				<Button className="font-title cursor-pointer">อ่านเพิ่มเติม</Button>
+			</div>
+		</Link>
+	);
 }
 
 export default GuideItem;

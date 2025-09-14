@@ -1,28 +1,39 @@
 {
-  "compilerOptions": {
-    "outDir": "dist",
-    "module": "ESNext",
-    "target": "ES6",
-    "lib": ["es6", "esnext", "dom"],
-    "allowJs": true,
-    "skipLibCheck": true,
+	"compilerOptions": {
+		"outDir": "dist",
+		"module": "ESNext",
+		"target": "ES2020",
+		"lib": ["es2020", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
 
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "noEmit": true,
+		/* Bundler mode */
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"isolatedModules": true,
+		"moduleDetection": "force",
+		"noEmit": true,
 
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
-  },
-  "ts-node": {
-    "esm": true,
-    "experimentalSpecifierResolution": "node"
-  },
-  "include": ["**/*.ts"]
+		/* Path mapping */
+		"baseUrl": "./",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+
+		/* Linting */
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"ts-node": {
+		"esm": true,
+		"experimentalSpecifierResolution": "node"
+	},
+	"include": ["src/**/*.ts", "index.ts"],
+	"exclude": ["node_modules", "dist"]
 }

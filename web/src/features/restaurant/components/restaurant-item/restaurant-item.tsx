@@ -25,7 +25,7 @@ function RestaurantItem({ restaurant }: RestaurantItemProps) {
 				<RestaurantItemSocial social={social} />
 			</div>
 			<p>{restaurant.description}</p>
-			<p className="font-title">คิดต่อ: {restaurant.phoneNo}</p>
+			<p className="font-title">ติดต่อ: {restaurant.phoneNo}</p>
 			<p className="font-title">ที่อยู่: {restaurant.address}</p>
 		</div>
 	);
