@@ -1,15 +1,14 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const $axios = axios.create({
-	baseURL: process.env.API_BASE_URL,
+export const guideApi = axios.create({
+	baseURL: process.env.GUIDE_API_BASE_URL,
 });
 
-$axios.interceptors.response.use(
-	(response) => response,
-	(error) => Promise.reject(error),
-);
+export const restaurantApi = axios.create({
+	baseURL: process.env.RESTAURANT_API_BASE_URL,
+});
 
-export default $axios;
+export type { AxiosResponse };

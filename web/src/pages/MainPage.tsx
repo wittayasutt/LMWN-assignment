@@ -1,4 +1,4 @@
-import GuideList from '@/features/guide/components/guide-list';
+import { GuideList } from '@/features/guide/components';
 
 function MainPage() {
 	return (

@@ -2,13 +2,12 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import { Separator } from '@/components/ui/separator';
 import { useQueryGuideItem } from '@/features/guide/api';
-import GuideItem from '@/features/guide/components/guide-item';
-import RestaurantList from '@/features/restaurant/components/restaurant-list';
+import { GuideItem } from '@/features/guide/components';
+import { RestaurantList } from '@/features/restaurant/components';
 
 function GuidePage() {
 	const navigate = useNavigate();
 	const { id } = useParams<{ id: string }>();
-
 	const { data: guide, isLoading, isError } = useQueryGuideItem(id);
 
 	if (isLoading) {
@@ -25,7 +24,7 @@ function GuidePage() {
 			</Link>
 			<GuideItem guide={guide} isTitle />
 			<Separator className="my-8" />
-			<RestaurantList id={id} />
+			{id && <RestaurantList id={id} />}
 		</div>
 	);
 }

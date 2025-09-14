@@ -1,12 +1,10 @@
-import { AxiosResponse } from 'axios';
+import { restaurantApi, AxiosResponse } from '../utils';
 
-import { axios } from '../utils';
-
-export const fetchRestaurants = async (id: string): Promise<AxiosResponse> => {
+export const fetchRestaurant = async (id: string): Promise<AxiosResponse> => {
 	try {
-		return await axios.get(`/restaurants/${id}`);
+		return await restaurantApi.get(`/restaurants/${id}`);
 	} catch (error) {
-		console.error('Error fetching restaurants', error);
+		console.error('Error fetching restaurant', error);
 		throw error;
 	}
 };

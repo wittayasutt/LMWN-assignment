@@ -1,2 +1,2 @@
-export * from './guide-item';
-export * from './guide-list';
+export { default as GuideItem } from './guide-item';
+export { default as GuideList } from './guide-list';

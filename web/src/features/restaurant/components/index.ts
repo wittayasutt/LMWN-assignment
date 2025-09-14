@@ -1,2 +1,2 @@
-export * from './restaurant-item';
-export * from './restaurant-list';
+export { default as RestaurantItem } from './restaurant-item';
+export { default as RestaurantList } from './restaurant-list';

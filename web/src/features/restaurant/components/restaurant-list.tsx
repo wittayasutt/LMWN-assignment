@@ -1,6 +1,5 @@
-import { useQueryRestaurants } from '@/features/restaurant/api';
-
 import RestaurantItem from './restaurant-item';
+import { useQueryRestaurants } from '../api';
 
 type RestaurantListProps = {
 	id: string;
