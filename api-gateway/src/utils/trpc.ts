@@ -1,18 +1,22 @@
-import { initTRPC, TRPCError } from '@trpc/server';
-import type { Context } from '../types/trpc.js';
+import { initTRPC } from '@trpc/server';
+import type { CreateExpressContextOptions } from '@trpc/server/adapters/express';
 
-const t = initTRPC.context<Context>().create();
+export const createContext = ({ req, res }: CreateExpressContextOptions) => {
+	const getUser = () => {
+		// Add your authentication logic here
+		return null;
+	};
+
+	return {
+		req,
+		res,
+		user: getUser(),
+	};
+};
+
+export type Context = Awaited<ReturnType<typeof createContext>>;
+
+export const t = initTRPC.context<Context>().create();
 
 export const router = t.router;
 export const publicProcedure = t.procedure;
-
-// Protected procedure example
-export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
-	if (!ctx.user) {
-		throw new TRPCError({ code: 'UNAUTHORIZED' });
-	}
-
-	return next({ ctx: { ...ctx, user: ctx.user } });
-});
-
-export const createTRPCRouter = t.router;

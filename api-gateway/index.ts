@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 import { createExpressMiddleware } from '@trpc/server/adapters/express';
 import { createContext } from './src/middleware/context';
-import { appRouter } from './src/routes';
+import { appRouter } from './src/routers';
 
 dotenv.config();
 

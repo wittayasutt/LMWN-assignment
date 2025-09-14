@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-export const coverPhotoSchema = z.object({
-	id: z.string(),
-	smallUrl: z.string(),
-	largeUrl: z.string(),
-});
+import { photoSchema } from './photo';
 
 export const guideSchema = z.object({
 	id: z.string(),
@@ -12,7 +8,7 @@ export const guideSchema = z.object({
 	socialTitle: z.string(),
 	shortDescription: z.string(),
 	description: z.string(),
-	coverPhoto: coverPhotoSchema,
+	coverPhoto: photoSchema,
 	tags: z.array(z.string()),
 	writeDate: z.string(),
 	createdAt: z.string(),

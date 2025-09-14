@@ -46,6 +46,7 @@ const mockData: GuideType[] = [
 
 function GuideList() {
 	const { data } = useQueryGuideList();
+	console.log('data', data);
 
 	// TODO: fetch guides from API
 	const guides: GuideType[] = mockData;
