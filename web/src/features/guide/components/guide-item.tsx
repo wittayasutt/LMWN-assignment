@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Tags } from '@/components/tags';
 import { Button } from '@/components/ui/button';
 
-import type { GuideType } from '../types';
+import type { GuideType } from '@/types';
 
 type GuideItemProps = {
 	guide: GuideType;
@@ -14,7 +14,7 @@ function GuideItem({ guide, isTitle = false }: GuideItemProps) {
 	const content = (
 		<>
 			{isTitle ? <h1>{guide?.title ?? ''}</h1> : <h2>{guide?.title ?? ''}</h2>}
-			{guide?.tags?.length > 0 ? (
+			{guide?.tags ? (
 				<div className="flex justify-end">
 					<Tags tags={guide?.tags} />
 				</div>

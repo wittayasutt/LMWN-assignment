@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useCopyToClipboard } from '@/hooks';
 
-import type { RestaurantSocialType } from '../../types';
+import type { RestaurantSocialType } from '@/types';
 
 type RestaurantItemSocialProps = {
 	social: RestaurantSocialType;
