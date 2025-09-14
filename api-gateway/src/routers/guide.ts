@@ -17,11 +17,20 @@ export const guideRouter = router({
 				}),
 			);
 		} catch (error) {
-			console.error(error);
+			console.error('Error TRPC fetching guide list', error);
 			throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR' });
 		}
 	}),
-	item: publicProcedure.input(z.string()).query(({ input }) => {
-		return { name: 'item', id: input };
-	}),
+	item: publicProcedure
+		.input(z.string())
+		.output(guideSchema)
+		.query(async ({ input }) => {
+			try {
+				const { data: guide } = await fetchGuideItem(input);
+				return guideSchema.parse(guide);
+			} catch (error) {
+				console.error('Error TRPC fetching guide item', error);
+				throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR' });
+			}
+		}),
 });

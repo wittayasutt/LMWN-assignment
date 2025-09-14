@@ -13,19 +13,23 @@ type GuideItemProps = {
 function GuideItem({ guide, isTitle = false }: GuideItemProps) {
 	const content = (
 		<>
-			{isTitle ? <h1>{guide.title}</h1> : <h2>{guide.title}</h2>}
-			<div className="flex justify-end">
-				<Tags tags={guide.tags} />
-			</div>
-			<img
-				className="w-full"
-				src={guide.coverPhoto.smallUrl}
-				srcSet={`${guide.coverPhoto.smallUrl} 854w, ${guide.coverPhoto.largeUrl} 1920w`}
-				sizes="(max-width: 1080px) 854px, 1920px"
-				alt={guide.title}
-				loading={isTitle ? 'eager' : 'lazy'}
-			/>
-			<p>{guide.description}</p>
+			{isTitle ? <h1>{guide?.title ?? ''}</h1> : <h2>{guide?.title ?? ''}</h2>}
+			{guide?.tags?.length > 0 ? (
+				<div className="flex justify-end">
+					<Tags tags={guide?.tags} />
+				</div>
+			) : null}
+			{guide?.coverPhoto?.smallUrl || guide?.coverPhoto?.largeUrl ? (
+				<img
+					className="w-full"
+					src={guide?.coverPhoto?.smallUrl ?? ''}
+					srcSet={`${guide?.coverPhoto?.smallUrl ?? ''} 854w, ${guide?.coverPhoto?.largeUrl ?? ''} 1920w`}
+					sizes="(max-width: 1080px) 854px, 1920px"
+					alt={guide?.title ?? ''}
+					loading={isTitle ? 'eager' : 'lazy'}
+				/>
+			) : null}
+			{guide?.description ? <p>{guide.description}</p> : null}
 		</>
 	);
 
@@ -34,7 +38,7 @@ function GuideItem({ guide, isTitle = false }: GuideItemProps) {
 	}
 
 	return (
-		<Link to={`/guide/${guide.id}`}>
+		<Link to={guide?.id ? `/guide/${guide.id}` : '/'}>
 			{content}
 			<div className="mb-8 mt-4 flex justify-center">
 				<Button className="font-title cursor-pointer">อ่านเพิ่มเติม</Button>
