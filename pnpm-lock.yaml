@@ -84,12 +84,6 @@ importers:
       '@trpc/client':
         specifier: ^11.5.1
         version: 11.5.1(@trpc/server@11.5.1)(typescript@5.7.2)
-      '@trpc/react-query':
-        specifier: ^11.5.1
-        version: 11.5.1(@tanstack/react-query@5.87.4)(@trpc/client@11.5.1)(@trpc/server@11.5.1)(react-dom@19.0.0)(react@19.0.0)(typescript@5.7.2)
-      '@trpc/server':
-        specifier: ^11.5.1
-        version: 11.5.1(typescript@5.7.2)
       '@trpc/tanstack-react-query':
         specifier: ^11.5.1
         version: 11.5.1(@tanstack/react-query@5.87.4)(@trpc/client@11.5.1)(@trpc/server@11.5.1)(react-dom@19.0.0)(react@19.0.0)(typescript@5.7.2)
@@ -102,9 +96,9 @@ importers:
       embla-carousel-react:
         specifier: ^8.6.0
         version: 8.6.0(react@19.0.0)
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+      lodash.uniq:
+        specifier: ^4.5.0
+        version: 4.5.0
       lucide-react:
         specifier: ^0.544.0
         version: 0.544.0(react@19.0.0)
@@ -130,6 +124,9 @@ importers:
       '@types/lodash':
         specifier: ^4.17.20
         version: 4.17.20
+      '@types/lodash.uniq':
+        specifier: ^4.5.9
+        version: 4.5.9
       '@types/react':
         specifier: 19.0.10
         version: 19.0.10
@@ -1798,24 +1795,6 @@ packages:
       typescript: 5.7.2
     dev: false
 
-  /@trpc/react-query@11.5.1(@tanstack/react-query@5.87.4)(@trpc/client@11.5.1)(@trpc/server@11.5.1)(react-dom@19.0.0)(react@19.0.0)(typescript@5.7.2):
-    resolution: {integrity: sha512-Y+e0Lp7na1LAjoYqtHVjxpfayOuvvnuchS723b4dsI/V0h3irBuI+bx38S3m7RgaIh/L1av1SldFrKIauk+r/A==}
-    peerDependencies:
-      '@tanstack/react-query': ^5.80.3
-      '@trpc/client': 11.5.1
-      '@trpc/server': 11.5.1
-      react: '>=18.2.0'
-      react-dom: '>=18.2.0'
-      typescript: '>=5.7.2'
-    dependencies:
-      '@tanstack/react-query': 5.87.4(react@19.0.0)
-      '@trpc/client': 11.5.1(@trpc/server@11.5.1)(typescript@5.7.2)
-      '@trpc/server': 11.5.1(typescript@5.7.2)
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-      typescript: 5.7.2
-    dev: false
-
   /@trpc/server@11.5.1(typescript@5.7.2):
     resolution: {integrity: sha512-KIDzHRS5m8U1ncPwjgtOtPWK9lNO0kYL7b+lnvKXRqowSAQIEC/z6y7g/dkt4Aqv3DKI/STLydt2/afrP1QrxQ==}
     peerDependencies:
@@ -1939,6 +1918,12 @@ packages:
     dependencies:
       '@types/lodash': 4.17.20
     dev: false
+
+  /@types/lodash.uniq@4.5.9:
+    resolution: {integrity: sha512-2Vd5avnDMNLbDSnUwwgwExKXvX9W3CN72rodT+ikGqGHXn7gVK6BM6Z+kHonbpGgCI2BzM+QDMHrkgKoofOi6A==}
+    dependencies:
+      '@types/lodash': 4.17.20
+    dev: true
 
   /@types/lodash@4.17.20:
     resolution: {integrity: sha512-H3MHACvFUEiujabxhaI/ImO6gUrd8oOurg7LQtS7mbwIXA/cUqWrvBsaeJ23aZEPk1TAYkurjfMbSELfoCXlGA==}
@@ -3920,8 +3905,8 @@ packages:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
 
-  /lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+  /lodash.uniq@4.5.0:
+    resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
     dev: false
 
   /lru-cache@5.1.1:
