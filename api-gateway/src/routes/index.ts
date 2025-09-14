@@ -1,8 +1,11 @@
-import { router } from '../utils/trpc.js';
-import { exampleRouter } from './example.js';
+import { router, publicProcedure } from '../utils/trpc';
+// import { guideRouter } from '../guide';
 
 export const appRouter = router({
-	example: exampleRouter,
+	getUser: publicProcedure.query(() => {
+		return { name: 'Bilbo' };
+	}),
+	// guide: guideRouter,
 });
 
 export type AppRouter = typeof appRouter;

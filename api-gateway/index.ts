@@ -12,12 +12,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 // Security middleware
-app.use(
-	cors({
-		origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
-		credentials: true,
-	}),
-);
+app.use(cors());
 
 // Body parsing middleware
 app.use(express.json());
@@ -30,7 +25,7 @@ app.get('/health', (_req, res) => {
 
 // tRPC middleware
 app.use(
-	'/api',
+	'/trpc',
 	createExpressMiddleware({
 		router: appRouter,
 		createContext,
@@ -41,7 +36,7 @@ app.use(
 );
 
 try {
-	app.listen(port, (): void => {
+	app.listen(port, () => {
 		console.log(`Connected successfully on http://localhost:${port}`);
 	});
 } catch (error) {

@@ -1,5 +1,6 @@
 import GuideItem from './guide-item';
 
+import { useQueryGuideList } from '../api';
 import type { GuideType } from '../types';
 
 // TODO: remove mock data
@@ -44,6 +45,8 @@ const mockData: GuideType[] = [
 ];
 
 function GuideList() {
+	const { data } = useQueryGuideList();
+
 	// TODO: fetch guides from API
 	const guides: GuideType[] = mockData;
 

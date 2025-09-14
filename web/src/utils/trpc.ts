@@ -8,7 +8,7 @@ export const queryClient = new QueryClient();
 
 const trpcClient = createTRPCClient<AppRouter>({
 	// TODO: change to .env
-	links: [httpBatchLink({ url: 'http://localhost:3001' })],
+	links: [httpBatchLink({ url: 'http://localhost:3001/trpc' })],
 });
 
 export const trpc = createTRPCOptionsProxy<AppRouter>({
