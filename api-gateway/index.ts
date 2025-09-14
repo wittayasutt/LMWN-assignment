@@ -3,9 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import { createExpressMiddleware } from '@trpc/server/adapters/express';
-import { createContext } from './src/middleware/context.js';
-import { errorHandler } from './src/middleware/errorHandler.js';
-import { appRouter } from './src/routes/index.js';
+import { createContext } from './src/middleware/context';
+import { appRouter } from './src/routes';
 
 dotenv.config();
 
@@ -40,14 +39,6 @@ app.use(
 		},
 	}),
 );
-
-// Error handling middleware
-app.use(errorHandler);
-
-// 404 handler
-app.use('*', (_req, res) => {
-	res.status(404).json({ error: 'Route not found' });
-});
 
 try {
 	app.listen(port, (): void => {
