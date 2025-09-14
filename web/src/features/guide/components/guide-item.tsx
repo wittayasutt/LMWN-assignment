@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Tags } from '@/components/tags';
 import { Button } from '@/components/ui/button';
 
-import { useQueryGuildList } from '../api/use-query-guide-lis';
+import { useQueryGuildList } from '../api';
 import type { GuideType } from '../types';
 
 type GuideItemProps = {
