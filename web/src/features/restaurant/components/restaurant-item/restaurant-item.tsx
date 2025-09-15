@@ -2,6 +2,7 @@ import { BadgeCheck } from 'lucide-react';
 import type { RestaurantType, RestaurantSocialType } from '@/types';
 
 import {
+	RestaurantItemDescription,
 	RestaurantItemDetail,
 	RestaurantItemPhotos,
 	RestaurantItemReview,
@@ -45,9 +46,7 @@ function RestaurantItem({ restaurant }: RestaurantItemProps) {
 				</div>
 				<RestaurantItemSocial social={social} />
 			</div>
-			{restaurant?.description ? (
-				<p className="pb-8 leading-relaxed">{restaurant?.description ?? ''}</p>
-			) : null}
+			<RestaurantItemDescription description={restaurant?.description} />
 			<RestaurantItemDetail restaurant={restaurant} />
 		</div>
 	);

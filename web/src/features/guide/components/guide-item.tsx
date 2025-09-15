@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Tags } from '@/components/tag';
@@ -11,6 +13,8 @@ type GuideItemProps = {
 };
 
 function GuideItem({ guide, isTitle = false }: GuideItemProps) {
+	const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
 	const titleClass =
 		'text-2xl font-medium mx-auto text-center mb-4 sm:text-3xl';
 
@@ -38,9 +42,24 @@ function GuideItem({ guide, isTitle = false }: GuideItemProps) {
 					/>
 				) : null}
 				{guide?.description ? (
-					<p className="text-md bg-gray-100 p-4 pb-8 leading-relaxed">
-						{guide.description}
-					</p>
+					<div
+						className={clsx(
+							'bg-gray-100 p-4 pb-8',
+							isExpanded ? '' : 'cursor-pointer',
+						)}
+						onClick={() => {
+							if (isTitle) setIsExpanded(true);
+						}}
+					>
+						<p
+							className={clsx(
+								'text-md leading-relaxed',
+								isExpanded ? 'line-clamp-none' : 'line-clamp-5',
+							)}
+						>
+							{guide.description}
+						</p>
+					</div>
 				) : null}
 			</div>
 		</>
