@@ -22,7 +22,7 @@ function GuideItem({ guide, isTitle = false }: GuideItemProps) {
 			)}
 			{guide?.tags ? (
 				<div className="flex justify-center">
-					<Tags tags={guide?.tags} />
+					<Tags tags={guide?.tags} variant="secondary" />
 				</div>
 			) : null}
 			<div className="my-10 w-full overflow-hidden rounded-lg">

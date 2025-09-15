@@ -25,7 +25,7 @@ function GuidePage() {
 			/>
 			<Separator className="mb-12 mt-4" />
 			<GuideItem guide={guide} isTitle />
-			<div className="mt-18 mx-auto mb-12 max-w-80">
+			<div className="my-18 mx-auto max-w-80">
 				<Separator />
 			</div>
 			{id && <RestaurantList id={id} />}

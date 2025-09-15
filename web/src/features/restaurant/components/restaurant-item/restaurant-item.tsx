@@ -1,6 +1,12 @@
-import { RestaurantItemPhotos, RestaurantItemSocial } from '.';
-
+import { BadgeCheck } from 'lucide-react';
 import type { RestaurantType, RestaurantSocialType } from '@/types';
+
+import {
+	RestaurantItemDetail,
+	RestaurantItemPhotos,
+	RestaurantItemReview,
+	RestaurantItemSocial,
+} from '.';
 
 type RestaurantItemProps = {
 	restaurant: RestaurantType;
@@ -8,36 +14,41 @@ type RestaurantItemProps = {
 
 function RestaurantItem({ restaurant }: RestaurantItemProps) {
 	const social: RestaurantSocialType = {
-		facebook: restaurant?.facebook,
 		instagram: restaurant?.instagram,
+		facebook: restaurant?.facebook,
+		url: restaurant?.url,
 	};
 
 	return (
-		<div>
+		<div className="mb-32">
 			<RestaurantItemPhotos
+				className="mb-4"
 				alt={restaurant?.name ?? ''}
 				photos={restaurant?.photos ?? []}
 			/>
-			<div className="my-2 flex flex-row justify-between">
-				<div className="flex flex-1 flex-row items-end">
+			<div className="mb-4 flex flex-row items-start justify-between">
+				<div>
 					{restaurant?.name ? (
-						<h4 className="leading-none">{restaurant?.name ?? ''}</h4>
+						<div className="flex flex-row items-center gap-2">
+							<h4 className="text-2xl leading-relaxed">
+								{restaurant?.name ?? ''}
+							</h4>
+							{restaurant?.official ? (
+								<BadgeCheck className="text-green-500" size={24} />
+							) : null}
+						</div>
 					) : null}
-					{restaurant?.rating ? (
-						<p className="font-title ml-1 text-sm leading-none text-gray-500">
-							(rating {restaurant?.rating ?? ''})
-						</p>
-					) : null}
+					<RestaurantItemReview
+						numberOfReviews={restaurant?.numberOfReviews}
+						rating={restaurant?.rating}
+					/>
 				</div>
 				<RestaurantItemSocial social={social} />
 			</div>
-			{restaurant?.description ? <p>{restaurant?.description ?? ''}</p> : null}
-			{restaurant?.phoneNo ? (
-				<p className="font-title">ติดต่อ: {restaurant?.phoneNo ?? ''}</p>
+			{restaurant?.description ? (
+				<p className="pb-8 leading-relaxed">{restaurant?.description ?? ''}</p>
 			) : null}
-			{restaurant?.address ? (
-				<p className="font-title">ที่อยู่: {restaurant?.address ?? ''}</p>
-			) : null}
+			<RestaurantItemDetail restaurant={restaurant} />
 		</div>
 	);
 }

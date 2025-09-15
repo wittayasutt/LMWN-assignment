@@ -9,17 +9,22 @@ import {
 import type { PhotoType } from '@/types';
 
 type RestaurantItemPhotosProps = {
-	photos: PhotoType[];
 	alt: string;
+	className?: string;
+	photos: PhotoType[];
 };
 
-function RestaurantItemPhotos({ photos, alt }: RestaurantItemPhotosProps) {
+function RestaurantItemPhotos({
+	alt,
+	className,
+	photos,
+}: RestaurantItemPhotosProps) {
 	if (photos?.length === 0) {
 		return null;
 	}
 
 	return (
-		<Carousel>
+		<Carousel className={className}>
 			<CarouselContent>
 				{photos?.map((photo, index) => (
 					<CarouselItem key={index} className="basis-[30%]">
@@ -34,8 +39,12 @@ function RestaurantItemPhotos({ photos, alt }: RestaurantItemPhotosProps) {
 					</CarouselItem>
 				))}
 			</CarouselContent>
-			<CarouselPrevious className="cursor-pointer max-md:hidden" />
-			<CarouselNext className="cursor-pointer max-md:hidden" />
+			{photos.length > 3 ? (
+				<>
+					<CarouselPrevious className="cursor-pointer max-md:hidden" />
+					<CarouselNext className="cursor-pointer max-md:hidden" />
+				</>
+			) : null}
 		</Carousel>
 	);
 }

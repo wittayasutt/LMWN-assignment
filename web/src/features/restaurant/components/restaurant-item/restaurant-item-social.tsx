@@ -1,6 +1,13 @@
-import { ClipboardCheck, Facebook, Instagram, Share2 } from 'lucide-react';
+import {
+	ClipboardCheck,
+	Facebook,
+	Instagram,
+	Link,
+	Share2,
+} from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+import { Button } from '@/components/ui/button';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -21,17 +28,22 @@ function RestaurantItemSocial({ social }: RestaurantItemSocialProps) {
 	const [isCopied, setIsCopied] = useState<boolean>(false);
 
 	const renderData = [
-		social.facebook && {
-			icon: Facebook,
-			label: 'Facebook',
-			url: `https://www.facebook.com/${social.facebook}`,
-		},
 		social.instagram && {
 			icon: Instagram,
 			label: 'Instagram',
 			url: `https://www.instagram.com/${social.instagram}`,
 		},
-	];
+		social.facebook && {
+			icon: Facebook,
+			label: 'Facebook',
+			url: `https://www.facebook.com/${social.facebook}`,
+		},
+		social.url && {
+			icon: Link,
+			label: 'Website',
+			url: social.url,
+		},
+	].filter(Boolean);
 
 	const handleCopy = (text: string) => {
 		copy(text);
@@ -54,12 +66,18 @@ function RestaurantItemSocial({ social }: RestaurantItemSocialProps) {
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger className="hover:bg-accent cursor-pointer p-1">
-				{isCopied ? (
-					<ClipboardCheck className="size-4" />
-				) : (
-					<Share2 className="size-4" />
-				)}
+			<DropdownMenuTrigger asChild>
+				<Button
+					variant="outline"
+					size="icon"
+					className="size-10 cursor-pointer"
+				>
+					{isCopied ? (
+						<ClipboardCheck className="size-4" />
+					) : (
+						<Share2 className="size-4" />
+					)}
+				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
 				{renderData.map(
