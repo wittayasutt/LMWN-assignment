@@ -51,7 +51,7 @@ function GuideItem({ guide, isTitle = false }: GuideItemProps) {
 
 	return (
 		<Link to={guide?.id ? `/guide/${guide.id}` : '/'}>
-			<div className="shadow-xs mb-10 rounded-lg bg-white p-4 pt-16 transition-all duration-200 hover:shadow-md">
+			<div className="border-1 mb-12 rounded-lg border-gray-200 bg-white p-4 pt-16 transition-all duration-200 hover:shadow-md">
 				{content}
 				<div className="my-4 flex justify-center">
 					<Button className="font-title cursor-pointer">อ่านเพิ่มเติม</Button>

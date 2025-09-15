@@ -13,7 +13,7 @@ function RestaurantItemReview({
 
 	return (
 		<p className="font-title text-md leading-relaxed text-gray-400">
-			คะแนนเฉลี่ย {rating}
+			คะแนนเฉลี่ย {rating} / 5
 		</p>
 	);
 }
