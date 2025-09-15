@@ -23,9 +23,9 @@ function GuidePage() {
 			<BreadcrumbWithCustomSeparator
 				items={[{ label: 'รวมลายแทง', to: '/' }, { label: guide?.title ?? '' }]}
 			/>
-			<Separator className="mb-12 mt-4" />
+			<Separator className="mb-8 mt-4 sm:mb-12" />
 			<GuideItem guide={guide} isTitle />
-			<div className="my-18 mx-auto max-w-80">
+			<div className="sm:my-18 mx-auto my-12 max-w-80">
 				<Separator />
 			</div>
 			{id && <RestaurantList id={id} />}

@@ -20,7 +20,7 @@ function RestaurantItem({ restaurant }: RestaurantItemProps) {
 	};
 
 	return (
-		<div className="mb-32">
+		<div className="mb-24 sm:mb-32">
 			<RestaurantItemPhotos
 				className="mb-4"
 				alt={restaurant?.name ?? ''}
@@ -30,7 +30,7 @@ function RestaurantItem({ restaurant }: RestaurantItemProps) {
 				<div>
 					{restaurant?.name ? (
 						<div className="flex flex-row items-center gap-2">
-							<h4 className="text-2xl leading-relaxed">
+							<h4 className="text-xl leading-relaxed sm:text-2xl">
 								{restaurant?.name ?? ''}
 							</h4>
 							{restaurant?.official ? (
