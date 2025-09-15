@@ -1,4 +1,4 @@
-import RestaurantItem from './restaurant-item';
+import { RestaurantItem, RestaurantItemSkeleton } from './';
 import { useQueryRestaurants } from '../api';
 
 type RestaurantListProps = {
@@ -9,7 +9,9 @@ function RestaurantList({ id }: RestaurantListProps) {
 	const { data, isLoading, isError } = useQueryRestaurants(id);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return Array.from({ length: 5 }, (_, i) => (
+			<RestaurantItemSkeleton key={i} />
+		));
 	} else if (!data?.length || isError) {
 		return null;
 	}
