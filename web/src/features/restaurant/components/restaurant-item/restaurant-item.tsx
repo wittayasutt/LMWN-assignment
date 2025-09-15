@@ -1,9 +1,9 @@
-import { BadgeCheck } from 'lucide-react';
 import type { RestaurantType, RestaurantSocialType } from '@/types';
 
 import {
 	RestaurantItemDescription,
 	RestaurantItemDetail,
+	RestaurantItemName,
 	RestaurantItemPhotos,
 	RestaurantItemReview,
 	RestaurantItemSocial,
@@ -29,16 +29,10 @@ function RestaurantItem({ restaurant }: RestaurantItemProps) {
 			/>
 			<div className="mb-4 flex flex-row items-start justify-between">
 				<div>
-					{restaurant?.name ? (
-						<div className="flex flex-row items-center gap-2">
-							<h4 className="text-xl leading-relaxed sm:text-2xl">
-								{restaurant?.name ?? ''}
-							</h4>
-							{restaurant?.official ? (
-								<BadgeCheck className="text-green-500" size={24} />
-							) : null}
-						</div>
-					) : null}
+					<RestaurantItemName
+						name={restaurant?.name}
+						isOfficial={restaurant?.official ?? false}
+					/>
 					<RestaurantItemReview
 						numberOfReviews={restaurant?.numberOfReviews}
 						rating={restaurant?.rating}
