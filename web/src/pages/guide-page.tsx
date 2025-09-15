@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { BreadcrumbWithCustomSeparator } from '@/components/breadcrumb';
 import { Separator } from '@/components/ui/separator';
 import { useQueryGuideItem } from '@/features/guide/api';
-import { GuideItem } from '@/features/guide/components';
+import { GuideItem, GuideItemSkeleton } from '@/features/guide/components';
 import { RestaurantList } from '@/features/restaurant/components';
 
 function GuidePage() {
@@ -12,7 +12,7 @@ function GuidePage() {
 	const { data: guide, isLoading, isError } = useQueryGuideItem(id);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <GuideItemSkeleton />;
 	} else if (!guide || isError) {
 		navigate('/not-found');
 		return null;
