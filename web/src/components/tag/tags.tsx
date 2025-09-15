@@ -10,7 +10,7 @@ function Tags({ tags }: { tags: string[] }) {
 	}
 
 	return (
-		<div className="mb-4 flex flex-wrap gap-3">
+		<div className="flex flex-wrap gap-3">
 			{uniqueTags?.map((tag) => (
 				<Badge
 					key={tag}

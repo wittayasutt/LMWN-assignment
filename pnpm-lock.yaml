@@ -121,9 +121,6 @@ importers:
       '@tanstack/eslint-plugin-query':
         specifier: ^5.86.0
         version: 5.86.0(eslint@9.21.0)(typescript@5.7.2)
-      '@types/lodash':
-        specifier: ^4.17.20
-        version: 4.17.20
       '@types/lodash.uniq':
         specifier: ^4.5.9
         version: 4.5.9

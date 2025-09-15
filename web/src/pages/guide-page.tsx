@@ -1,5 +1,6 @@
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
+import { BreadcrumbWithCustomSeparator } from '@/components/breadcrumb';
 import { Separator } from '@/components/ui/separator';
 import { useQueryGuideItem } from '@/features/guide/api';
 import { GuideItem } from '@/features/guide/components';
@@ -19,11 +20,14 @@ function GuidePage() {
 
 	return (
 		<div className="container min-h-screen">
-			<Link to="/" className="font-title">
-				ไปหน้าหลัก
-			</Link>
+			<BreadcrumbWithCustomSeparator
+				items={[{ label: 'รวมลายแทง', to: '/' }, { label: guide?.title ?? '' }]}
+			/>
+			<Separator className="mb-12 mt-4" />
 			<GuideItem guide={guide} isTitle />
-			<Separator className="my-8" />
+			<div className="mt-18 mx-auto mb-12 max-w-80">
+				<Separator />
+			</div>
 			{id && <RestaurantList id={id} />}
 		</div>
 	);
