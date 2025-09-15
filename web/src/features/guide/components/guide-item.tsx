@@ -28,7 +28,7 @@ function GuideItem({ guide, isTitle = false }: GuideItemProps) {
 			<div className="my-10 w-full overflow-hidden rounded-lg">
 				{guide?.coverPhoto?.smallUrl || guide?.coverPhoto?.largeUrl ? (
 					<img
-						className="w-full"
+						className="aspect-[16/9] w-full bg-gray-200"
 						src={guide?.coverPhoto?.smallUrl ?? ''}
 						srcSet={`${guide?.coverPhoto?.smallUrl ?? ''} 854w, ${guide?.coverPhoto?.largeUrl ?? ''} 1920w`}
 						sizes="(max-width: 1080px) 854px, 1920px"
