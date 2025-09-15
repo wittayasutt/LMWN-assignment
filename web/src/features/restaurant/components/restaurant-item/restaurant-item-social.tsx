@@ -6,6 +6,7 @@ import {
 	Share2,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -47,6 +48,7 @@ function RestaurantItemSocial({ social }: RestaurantItemSocialProps) {
 
 	const handleCopy = (text: string) => {
 		copy(text);
+		toast(`${text} คัดลอกแล้ว`);
 		setIsCopied(true);
 	};
 
