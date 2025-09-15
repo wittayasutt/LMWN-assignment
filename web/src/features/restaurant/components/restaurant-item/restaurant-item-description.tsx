@@ -15,10 +15,7 @@ function RestaurantItemDescription({
 	}
 
 	return (
-		<div
-			className={clsx('pb-8', isExpanded ? '' : 'cursor-pointer')}
-			onClick={() => setIsExpanded(true)}
-		>
+		<div className="pb-8" onClick={() => setIsExpanded(true)}>
 			<p
 				className={clsx(
 					'leading-relaxed',

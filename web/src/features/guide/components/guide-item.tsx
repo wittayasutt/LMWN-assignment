@@ -43,10 +43,7 @@ function GuideItem({ guide, isTitle = false }: GuideItemProps) {
 				) : null}
 				{guide?.description ? (
 					<div
-						className={clsx(
-							'bg-gray-100 p-4 pb-8',
-							isExpanded ? '' : 'cursor-pointer',
-						)}
+						className="bg-gray-100 p-4 pb-8"
 						onClick={() => {
 							if (isTitle) setIsExpanded(true);
 						}}
