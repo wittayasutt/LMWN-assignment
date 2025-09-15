@@ -12,7 +12,11 @@ function GuidePage() {
 	const { data: guide, isLoading, isError } = useQueryGuideItem(id);
 
 	if (isLoading) {
-		return <GuideItemSkeleton />;
+		return (
+			<div className="container min-h-screen">
+				<GuideItemSkeleton />;
+			</div>
+		);
 	} else if (!guide || isError) {
 		navigate('/not-found');
 		return null;
