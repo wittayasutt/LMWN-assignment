@@ -10,11 +10,12 @@ function Tags({ tags }: { tags: string[] }) {
 	}
 
 	return (
-		<div className="flex flex-wrap gap-1">
+		<div className="mb-4 flex flex-wrap gap-3">
 			{uniqueTags?.map((tag) => (
 				<Badge
 					key={tag}
-					className="font-title flex max-w-24 justify-start truncate p-1"
+					className="font-title flex max-w-24 justify-start truncate px-4 py-1 shadow-sm"
+					variant="secondary"
 				>
 					{tag}
 				</Badge>

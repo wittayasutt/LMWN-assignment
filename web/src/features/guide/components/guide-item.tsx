@@ -11,25 +11,37 @@ type GuideItemProps = {
 };
 
 function GuideItem({ guide, isTitle = false }: GuideItemProps) {
+	const titleClass = 'text-3xl font-medium mx-auto text-center mb-4';
+
 	const content = (
 		<>
-			{isTitle ? <h1>{guide?.title ?? ''}</h1> : <h2>{guide?.title ?? ''}</h2>}
+			{isTitle ? (
+				<h1 className={titleClass}>{guide?.title ?? ''}</h1>
+			) : (
+				<h2 className={titleClass}>{guide?.title ?? ''}</h2>
+			)}
 			{guide?.tags ? (
-				<div className="flex justify-end">
+				<div className="mb-8 flex justify-center">
 					<Tags tags={guide?.tags} />
 				</div>
 			) : null}
-			{guide?.coverPhoto?.smallUrl || guide?.coverPhoto?.largeUrl ? (
-				<img
-					className="w-full"
-					src={guide?.coverPhoto?.smallUrl ?? ''}
-					srcSet={`${guide?.coverPhoto?.smallUrl ?? ''} 854w, ${guide?.coverPhoto?.largeUrl ?? ''} 1920w`}
-					sizes="(max-width: 1080px) 854px, 1920px"
-					alt={guide?.title ?? ''}
-					loading={isTitle ? 'eager' : 'lazy'}
-				/>
-			) : null}
-			{guide?.description ? <p>{guide.description}</p> : null}
+			<div className="mb-10 w-full overflow-hidden rounded-lg">
+				{guide?.coverPhoto?.smallUrl || guide?.coverPhoto?.largeUrl ? (
+					<img
+						className="w-full"
+						src={guide?.coverPhoto?.smallUrl ?? ''}
+						srcSet={`${guide?.coverPhoto?.smallUrl ?? ''} 854w, ${guide?.coverPhoto?.largeUrl ?? ''} 1920w`}
+						sizes="(max-width: 1080px) 854px, 1920px"
+						alt={guide?.title ?? ''}
+						loading={isTitle ? 'eager' : 'lazy'}
+					/>
+				) : null}
+				{guide?.description ? (
+					<p className="text-md bg-gray-100 p-4 pb-8 leading-relaxed">
+						{guide.description}
+					</p>
+				) : null}
+			</div>
 		</>
 	);
 
@@ -39,9 +51,11 @@ function GuideItem({ guide, isTitle = false }: GuideItemProps) {
 
 	return (
 		<Link to={guide?.id ? `/guide/${guide.id}` : '/'}>
-			{content}
-			<div className="mb-8 mt-4 flex justify-center">
-				<Button className="font-title cursor-pointer">อ่านเพิ่มเติม</Button>
+			<div className="shadow-xs mb-8 rounded-lg bg-white p-4 pt-16 transition-all duration-200 hover:shadow-md">
+				{content}
+				<div className="my-4 flex justify-center">
+					<Button className="font-title cursor-pointer">อ่านเพิ่มเติม</Button>
+				</div>
 			</div>
 		</Link>
 	);

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function NotFoundPage() {
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-gray-200">
 			<div className="container">
 				<div className="mx-auto max-w-4xl text-center">
 					<h1 className="mb-4 text-6xl font-bold text-gray-900">404</h1>
