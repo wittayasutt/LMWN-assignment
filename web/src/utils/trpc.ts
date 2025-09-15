@@ -7,8 +7,7 @@ import type { AppRouter } from '../../../api-gateway/src/routers';
 export const queryClient = new QueryClient();
 
 const trpcClient = createTRPCClient<AppRouter>({
-	// TODO: change to .env
-	links: [httpBatchLink({ url: 'http://localhost:3001/trpc' })],
+	links: [httpBatchLink({ url: `${import.meta.env.VITE_API_URL}/trpc` })],
 });
 
 export const trpc = createTRPCOptionsProxy<AppRouter>({
