@@ -1,11 +1,10 @@
-import clsx from 'clsx';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Tags } from '@/components/tag';
 import { Button } from '@/components/ui/button';
-
 import type { GuideType } from '@/types';
+
+import { GuideItemDescription, GuideItemPhoto } from './';
 
 type GuideItemProps = {
 	guide: GuideType;
@@ -13,8 +12,6 @@ type GuideItemProps = {
 };
 
 function GuideItem({ guide, isTitle = false }: GuideItemProps) {
-	const [isExpanded, setIsExpanded] = useState<boolean>(false);
-
 	const titleClass =
 		'text-2xl font-medium mx-auto text-center mb-4 sm:text-3xl';
 
@@ -31,33 +28,15 @@ function GuideItem({ guide, isTitle = false }: GuideItemProps) {
 				</div>
 			) : null}
 			<div className="my-8 w-full overflow-hidden rounded-lg sm:my-10">
-				{guide?.coverPhoto?.smallUrl || guide?.coverPhoto?.largeUrl ? (
-					<img
-						className="aspect-[16/9] w-full bg-gray-200"
-						src={guide?.coverPhoto?.smallUrl ?? ''}
-						srcSet={`${guide?.coverPhoto?.smallUrl ?? ''} 854w, ${guide?.coverPhoto?.largeUrl ?? ''} 1920w`}
-						sizes="(max-width: 1080px) 854px, 1920px"
-						alt={guide?.title ?? ''}
-						loading={isTitle ? 'eager' : 'lazy'}
-					/>
-				) : null}
-				{guide?.description ? (
-					<div
-						className="bg-gray-100 p-4 pb-8"
-						onClick={() => {
-							if (isTitle) setIsExpanded(true);
-						}}
-					>
-						<p
-							className={clsx(
-								'text-md leading-relaxed',
-								isExpanded ? 'line-clamp-none' : 'line-clamp-5',
-							)}
-						>
-							{guide.description}
-						</p>
-					</div>
-				) : null}
+				<GuideItemPhoto
+					alt={guide?.title}
+					photo={guide?.coverPhoto}
+					isTitle={isTitle}
+				/>
+				<GuideItemDescription
+					description={guide?.description}
+					isTitle={isTitle}
+				/>
 			</div>
 		</>
 	);

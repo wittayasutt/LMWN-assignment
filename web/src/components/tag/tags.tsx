@@ -1,10 +1,11 @@
 import uniq from 'lodash.uniq';
-
 import { Badge } from '@/components/ui/badge';
+
+import type { VariantProps } from 'class-variance-authority';
 
 type TagsProps = {
 	tags: string[];
-	variant?: 'default' | 'secondary' | 'destructive' | 'outline';
+	variant?: VariantProps;
 };
 
 function Tags({ tags, variant = 'default' }: TagsProps) {
