@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router';
 
 import { BreadcrumbWithCustomSeparator } from '@/components/breadcrumb';
 import { Separator } from '@/components/ui/separator';
@@ -21,7 +21,10 @@ function GuidePage() {
 	return (
 		<div className="container min-h-screen">
 			<BreadcrumbWithCustomSeparator
-				items={[{ label: 'รวมลายแทง', to: '/' }, { label: guide?.title ?? '' }]}
+				items={[
+					{ label: 'รวมลายแทง ร้านลับ', to: '/' },
+					{ label: guide?.title ?? '' },
+				]}
 			/>
 			<Separator className="mb-8 mt-4 sm:mb-12" />
 			<GuideItem guide={guide} isTitle />

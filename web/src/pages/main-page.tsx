@@ -5,7 +5,7 @@ function MainPage() {
 		<div className="min-h-screen">
 			<div className="container">
 				<h1 className="mx-auto pb-12 pt-4 text-center text-3xl font-medium sm:pb-16 sm:pt-12 sm:text-4xl">
-					รวมลายแทง
+					รวมลายแทง ร้านลับ
 				</h1>
 				<GuideList />
 			</div>
