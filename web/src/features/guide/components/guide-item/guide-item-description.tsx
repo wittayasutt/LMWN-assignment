@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 
-type GuideItemDescriptionProps = {
+export type GuideItemDescriptionProps = {
 	description?: string | null;
 	isTitle?: boolean;
 };

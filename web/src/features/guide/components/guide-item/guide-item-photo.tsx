@@ -1,6 +1,6 @@
 import type { PhotoType } from '@/types';
 
-type GuideItemPhotoProps = {
+export type GuideItemPhotoProps = {
 	alt?: string;
 	photo?: PhotoType;
 	isTitle?: boolean;
