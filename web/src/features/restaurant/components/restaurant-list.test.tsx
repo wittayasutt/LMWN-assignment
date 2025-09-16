@@ -4,7 +4,7 @@ import { mockRestaurant } from '@/mock';
 import type { RestaurantType } from '@/types';
 
 import RestaurantList from './restaurant-list';
-import * as restaurantApi from '../api';
+import { useQueryRestaurants } from '../api';
 
 vi.mock('../api', () => ({
 	useQueryRestaurants: vi.fn(),
@@ -17,7 +17,7 @@ vi.mock('./', () => ({
 	RestaurantItemSkeleton: () => <div data-testid="restaurant-skeleton" />,
 }));
 
-const mockUseQueryRestaurants = vi.mocked(restaurantApi.useQueryRestaurants);
+const mockUseQueryRestaurants = vi.mocked(useQueryRestaurants);
 
 describe('RestaurantList', () => {
 	const testId = 'test-guide-id';
@@ -31,7 +31,7 @@ describe('RestaurantList', () => {
 			data: undefined,
 			isLoading: true,
 			isError: false,
-		} as ReturnType<typeof restaurantApi.useQueryRestaurants>);
+		} as ReturnType<typeof useQueryRestaurants>);
 
 		render(<RestaurantList id={testId} />);
 
@@ -44,7 +44,7 @@ describe('RestaurantList', () => {
 			data: undefined,
 			isLoading: false,
 			isError: true,
-		} as ReturnType<typeof restaurantApi.useQueryRestaurants>);
+		} as ReturnType<typeof useQueryRestaurants>);
 
 		const { container } = render(<RestaurantList id={testId} />);
 		expect(container.firstChild).toBeNull();
@@ -55,7 +55,7 @@ describe('RestaurantList', () => {
 			data: [] as RestaurantType[],
 			isLoading: false,
 			isError: false,
-		} as ReturnType<typeof restaurantApi.useQueryRestaurants>);
+		} as ReturnType<typeof useQueryRestaurants>);
 
 		const { container } = render(<RestaurantList id={testId} />);
 		expect(container.firstChild).toBeNull();
@@ -66,7 +66,7 @@ describe('RestaurantList', () => {
 			data: undefined,
 			isLoading: false,
 			isError: false,
-		} as ReturnType<typeof restaurantApi.useQueryRestaurants>);
+		} as ReturnType<typeof useQueryRestaurants>);
 
 		const { container } = render(<RestaurantList id={testId} />);
 		expect(container.firstChild).toBeNull();
@@ -83,7 +83,7 @@ describe('RestaurantList', () => {
 			data: mockRestaurants,
 			isLoading: false,
 			isError: false,
-		} as ReturnType<typeof restaurantApi.useQueryRestaurants>);
+		} as ReturnType<typeof useQueryRestaurants>);
 
 		render(<RestaurantList id={testId} />);
 
@@ -100,7 +100,7 @@ describe('RestaurantList', () => {
 			data: [mockRestaurant],
 			isLoading: false,
 			isError: false,
-		} as ReturnType<typeof restaurantApi.useQueryRestaurants>);
+		} as ReturnType<typeof useQueryRestaurants>);
 
 		render(<RestaurantList id={testId} />);
 
@@ -114,7 +114,7 @@ describe('RestaurantList', () => {
 			data: [] as RestaurantType[],
 			isLoading: false,
 			isError: false,
-		} as ReturnType<typeof restaurantApi.useQueryRestaurants>);
+		} as ReturnType<typeof useQueryRestaurants>);
 
 		render(<RestaurantList id={testId} />);
 
