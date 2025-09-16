@@ -7,7 +7,12 @@ function RestaurantItemReview({
 	numberOfReviews,
 	rating,
 }: RestaurantItemReviewProps) {
-	if (!numberOfReviews || numberOfReviews <= 0 || !rating) {
+	if (
+		(numberOfReviews !== undefined &&
+			numberOfReviews !== null &&
+			numberOfReviews <= 0) ||
+		!rating
+	) {
 		return null;
 	}
 
