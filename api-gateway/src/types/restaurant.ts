@@ -10,3 +10,8 @@ export type RestaurantSocialType = z.infer<typeof restaurantSocialSchema>;
 export type RestaurantWorkingHourType = z.infer<
 	typeof restaurantWorkingHourSchema
 >;
+
+export type RestaurantItemResponseType = Omit<
+	RestaurantType,
+	'description' | 'photos'
+>;

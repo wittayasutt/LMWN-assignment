@@ -51,4 +51,9 @@ export const mockGuideItem2: GuideItemResponseType = {
 	writeDate: '2024-01-10T12:00:00.000Z',
 	createdAt: '2024-01-10T12:00:00.000Z',
 	updatedAt: '2024-01-10T12:00:00.000Z',
+	items: [
+		'07e48699-a280-4e8f-9b77-97b4201ab175',
+		'd4bbf0a0-e7dd-4ed6-b590-456d2072bf06',
+		'62cd2502-18f8-4c7c-b25e-0908fed897fd',
+	],
 };
