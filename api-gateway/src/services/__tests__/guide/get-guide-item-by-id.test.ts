@@ -16,7 +16,6 @@ describe('getGuideItemById', () => {
 	});
 
 	it('should return parsed guide data when API call succeeds', async () => {
-		const mockGuideId = mockGuideItem.id;
 		const mockApiResponse = {
 			data: mockGuideItem,
 			status: 200,
@@ -29,14 +28,13 @@ describe('getGuideItemById', () => {
 			mockApiResponse as AxiosResponse,
 		);
 
-		const result = await getGuideItemById(mockGuideId);
+		const result = await getGuideItemById(mockGuideItem.id);
 
-		expect(mockedApi.fetchGuideItem).toHaveBeenCalledWith(mockGuideId);
+		expect(mockedApi.fetchGuideItem).toHaveBeenCalledWith(mockGuideItem.id);
 		expect(result).toEqual(expectedResult);
 	});
 
 	it('should handle guide data with missing optional fields', async () => {
-		const mockGuideId = mockGuideItem.id;
 		const mockApiResponse = {
 			data: {
 				id: mockGuideItem.id,
@@ -50,9 +48,9 @@ describe('getGuideItemById', () => {
 			mockApiResponse as AxiosResponse,
 		);
 
-		const result = await getGuideItemById(mockGuideId);
+		const result = await getGuideItemById(mockGuideItem.id);
 
-		expect(mockedApi.fetchGuideItem).toHaveBeenCalledWith(mockGuideId);
+		expect(mockedApi.fetchGuideItem).toHaveBeenCalledWith(mockGuideItem.id);
 		expect(result).toEqual({
 			id: mockGuideItem.id,
 			title: mockGuideItem.title,
@@ -62,7 +60,6 @@ describe('getGuideItemById', () => {
 	});
 
 	it('should strip extra fields not in schema', async () => {
-		const mockGuideId = mockGuideItem.id;
 		const dataWithExtraFields = {
 			...mockGuideItem,
 			extraField: 'should be removed',
@@ -79,10 +76,10 @@ describe('getGuideItemById', () => {
 			mockApiResponse as AxiosResponse,
 		);
 
-		const result = await getGuideItemById(mockGuideId);
+		const result = await getGuideItemById(mockGuideItem.id);
 		const expectedResult = omit(mockGuideItem, ['items']);
 
-		expect(mockedApi.fetchGuideItem).toHaveBeenCalledWith(mockGuideId);
+		expect(mockedApi.fetchGuideItem).toHaveBeenCalledWith(mockGuideItem.id);
 		expect(result).toEqual(expectedResult);
 		expect(result).not.toHaveProperty('extraField');
 		expect(result).not.toHaveProperty('anotherExtra');
@@ -109,7 +106,6 @@ describe('getGuideItemById', () => {
 	});
 
 	it('should handle empty response data', async () => {
-		const mockGuideId = mockGuideItem.id;
 		const mockApiResponse = {
 			data: {},
 			status: 200,
@@ -120,17 +116,18 @@ describe('getGuideItemById', () => {
 			mockApiResponse as AxiosResponse,
 		);
 
-		await expect(getGuideItemById(mockGuideId)).rejects.toThrow();
-		expect(mockedApi.fetchGuideItem).toHaveBeenCalledWith(mockGuideId);
+		await expect(getGuideItemById(mockGuideItem.id)).rejects.toThrow();
+		expect(mockedApi.fetchGuideItem).toHaveBeenCalledWith(mockGuideItem.id);
 	});
 
 	it('should throw error when API call fails', async () => {
-		const mockGuideId = mockGuideItem.id;
 		const mockError = new Error('API Error');
 
 		mockedApi.fetchGuideItem.mockRejectedValue(mockError);
 
-		await expect(getGuideItemById(mockGuideId)).rejects.toThrow('API Error');
-		expect(mockedApi.fetchGuideItem).toHaveBeenCalledWith(mockGuideId);
+		await expect(getGuideItemById(mockGuideItem.id)).rejects.toThrow(
+			'API Error',
+		);
+		expect(mockedApi.fetchGuideItem).toHaveBeenCalledWith(mockGuideItem.id);
 	});
 });
