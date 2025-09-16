@@ -5,8 +5,9 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from '@/components/ui/carousel';
-
 import type { PhotoType } from '@/types';
+
+import { RestaurantItemPhoto } from '.';
 
 type RestaurantItemPhotosProps = {
 	alt: string;
@@ -28,14 +29,7 @@ function RestaurantItemPhotos({
 			<CarouselContent>
 				{photos?.map((photo, index) => (
 					<CarouselItem key={index} className="basis-[30%]">
-						<img
-							className="aspect-square w-full bg-gray-100 object-cover"
-							src={photo?.smallUrl ?? ''}
-							srcSet={`${photo?.smallUrl ?? ''} 854w, ${photo?.largeUrl ?? ''} 1920w`}
-							sizes="(max-width: 1080px) 854px, 1920px"
-							alt={`${alt}-${index + 1}`}
-							loading="lazy"
-						/>
+						<RestaurantItemPhoto alt={alt} index={index} photo={photo} />
 					</CarouselItem>
 				))}
 			</CarouselContent>
