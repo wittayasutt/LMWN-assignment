@@ -1,23 +1,22 @@
 import uniq from 'lodash.uniq';
 import { Badge } from '@/components/ui/badge';
 
-import type { VariantProps } from 'class-variance-authority';
-
 type TagsProps = {
 	tags: string[];
-	variant?: VariantProps;
+	variant?: 'default' | 'secondary' | 'destructive' | 'outline' | null;
 };
 
 function Tags({ tags, variant = 'default' }: TagsProps) {
 	const uniqueTags: string[] = uniq(tags);
+	const renderTags = uniqueTags.filter(Boolean);
 
-	if (uniqueTags?.length === 0) {
+	if (renderTags?.length === 0) {
 		return null;
 	}
 
 	return (
 		<div className="flex flex-wrap gap-3">
-			{uniqueTags?.map((tag) => (
+			{renderTags?.map((tag) => (
 				<Badge
 					key={tag}
 					className="font-title flex flex-wrap px-4 py-1 shadow-sm"
