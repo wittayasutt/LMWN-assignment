@@ -10,12 +10,16 @@ export const getGuideList = async () => {
 		(id: string, index: number) => id && index < PAGE_SIZE,
 	);
 
-	return await Promise.all(
+	const response = await Promise.allSettled(
 		filteredGuideIds.map(async (guideId: string) => {
 			const { data: guide } = await fetchGuideItem(guideId);
 			return guideSchema.parse(guide);
 		}),
 	);
+
+	return response
+		.filter((item) => item.status === 'fulfilled')
+		.map((item) => item.value);
 };
 
 export const getGuideItemById = async (id: string) => {

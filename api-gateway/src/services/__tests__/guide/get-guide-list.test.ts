@@ -142,7 +142,7 @@ describe('getGuideList', () => {
 		expect(mockedApi.fetchGuideItem).not.toHaveBeenCalled();
 	});
 
-	it('should throw error when fetchGuideItem fails for any guide', async () => {
+	it('should return successful guides when some fetchGuideItem calls fail', async () => {
 		const mockGuideListResponse = {
 			data: mockGuideList,
 			status: 200,
@@ -164,14 +164,23 @@ describe('getGuideList', () => {
 			.mockResolvedValueOnce(mockGuideItemResponse1 as AxiosResponse)
 			.mockRejectedValueOnce(mockError);
 
-		await expect(getGuideList()).rejects.toThrow('Failed to fetch guide item');
+		const result = await getGuideList();
+
 		expect(mockedApi.fetchGuideList).toHaveBeenCalledTimes(1);
 		expect(mockedApi.fetchGuideItem).toHaveBeenCalledTimes(2);
+		expect(result).toHaveLength(1);
+		expect(result[0]).toEqual(omit(mockGuideItem, ['items']));
 	});
 
-	it('should throw error when guide item schema validation fails', async () => {
+	it('should filter out guides that fail schema validation', async () => {
 		const mockGuideListResponse = {
-			data: [mockGuideList[0]],
+			data: mockGuideList,
+			status: 200,
+			statusText: 'OK',
+		};
+
+		const mockGuideItemResponse1 = {
+			data: mockGuideItem,
 			status: 200,
 			statusText: 'OK',
 		};
@@ -188,12 +197,37 @@ describe('getGuideList', () => {
 		mockedApi.fetchGuideList.mockResolvedValue(
 			mockGuideListResponse as AxiosResponse,
 		);
-		mockedApi.fetchGuideItem.mockResolvedValue(
-			invalidGuideItemResponse as AxiosResponse,
-		);
+		mockedApi.fetchGuideItem
+			.mockResolvedValueOnce(mockGuideItemResponse1 as AxiosResponse)
+			.mockResolvedValueOnce(invalidGuideItemResponse as AxiosResponse);
 
-		await expect(getGuideList()).rejects.toThrow();
+		const result = await getGuideList();
+
 		expect(mockedApi.fetchGuideList).toHaveBeenCalledTimes(1);
-		expect(mockedApi.fetchGuideItem).toHaveBeenCalledTimes(1);
+		expect(mockedApi.fetchGuideItem).toHaveBeenCalledTimes(2);
+		expect(result).toHaveLength(1);
+		expect(result[0]).toEqual(omit(mockGuideItem, ['items']));
+	});
+
+	it('should return empty array when all guide item fetches fail', async () => {
+		const mockGuideListResponse = {
+			data: mockGuideList,
+			status: 200,
+			statusText: 'OK',
+		};
+
+		const mockError = new Error('All guide items failed');
+
+		mockedApi.fetchGuideList.mockResolvedValue(
+			mockGuideListResponse as AxiosResponse,
+		);
+		mockedApi.fetchGuideItem.mockRejectedValue(mockError);
+
+		const result = await getGuideList();
+
+		expect(mockedApi.fetchGuideList).toHaveBeenCalledTimes(1);
+		expect(mockedApi.fetchGuideItem).toHaveBeenCalledTimes(2);
+		expect(result).toEqual([]);
+		expect(result).toHaveLength(0);
 	});
 });
