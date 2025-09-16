@@ -12,7 +12,7 @@ import {
 
 type BreadcrumbWithCustomSeparatorProps = {
 	items: {
-		label: string;
+		label?: string;
 		to?: string;
 	}[];
 };
@@ -20,10 +20,12 @@ type BreadcrumbWithCustomSeparatorProps = {
 function BreadcrumbWithCustomSeparator({
 	items,
 }: BreadcrumbWithCustomSeparatorProps) {
+	const renderItems = items.filter((item) => item.label);
+
 	return (
 		<Breadcrumb>
 			<BreadcrumbList>
-				{items.map((item, index) => (
+				{renderItems.map((item, index) => (
 					<div key={index} className="flex items-center">
 						{index !== 0 && (
 							<BreadcrumbSeparator className="mr-2">
@@ -32,7 +34,7 @@ function BreadcrumbWithCustomSeparator({
 						)}
 
 						<BreadcrumbItem>
-							{index === items.length - 1 ? (
+							{index === renderItems.length - 1 ? (
 								<BreadcrumbPage className="font-title">
 									{item?.label ?? ''}
 								</BreadcrumbPage>
