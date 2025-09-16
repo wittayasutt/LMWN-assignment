@@ -10,7 +10,7 @@ export const getRestaurantItemsByGuideId = async (id: string) => {
 		(id: string, index: number) => id && index < PAGE_SIZE,
 	);
 
-	return await Promise.all(
+	const response = await Promise.allSettled(
 		filteredGuideItemIds?.map(async (guideItemId: string) => {
 			const { data: guideItem } = await fetchGuideItemDetail(guideItemId);
 			const { data: restaurant } = await fetchRestaurant(
@@ -20,4 +20,8 @@ export const getRestaurantItemsByGuideId = async (id: string) => {
 			return restaurantSchema.parse({ ...guideItem, ...restaurant });
 		}),
 	);
+
+	return response
+		.filter((item) => item.status === 'fulfilled')
+		.map((item) => item.value);
 };
