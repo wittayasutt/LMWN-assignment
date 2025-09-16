@@ -1,1 +1,2 @@
-export * from './guide';
+export * from './guide-item';
+export * from './guide-list';

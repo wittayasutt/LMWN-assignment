@@ -4,7 +4,7 @@ import { jest, describe, it, expect, beforeEach } from '@jest/globals';
 
 import { getGuideItemById } from '../../guide';
 import * as api from '../../../api';
-import { mockGuideDetail } from '../../../__mocks__';
+import { mockGuideItem } from '../../../__mocks__';
 
 jest.mock('../../../api');
 
@@ -16,14 +16,14 @@ describe('getGuideItemById', () => {
 	});
 
 	it('should return parsed guide data when API call succeeds', async () => {
-		const mockGuideId = mockGuideDetail.id;
+		const mockGuideId = mockGuideItem.id;
 		const mockApiResponse = {
-			data: mockGuideDetail,
+			data: mockGuideItem,
 			status: 200,
 			statusText: 'OK',
 		};
 
-		const expectedResult = omit(mockGuideDetail, ['items']);
+		const expectedResult = omit(mockGuideItem, ['items']);
 
 		mockedApi.fetchGuideItem.mockResolvedValue(
 			mockApiResponse as AxiosResponse,
@@ -36,11 +36,11 @@ describe('getGuideItemById', () => {
 	});
 
 	it('should handle guide data with missing optional fields', async () => {
-		const mockGuideId = mockGuideDetail.id;
+		const mockGuideId = mockGuideItem.id;
 		const mockApiResponse = {
 			data: {
-				id: mockGuideDetail.id,
-				title: mockGuideDetail.title,
+				id: mockGuideItem.id,
+				title: mockGuideItem.title,
 			},
 			status: 200,
 			statusText: 'OK',
@@ -54,17 +54,17 @@ describe('getGuideItemById', () => {
 
 		expect(mockedApi.fetchGuideItem).toHaveBeenCalledWith(mockGuideId);
 		expect(result).toEqual({
-			id: mockGuideDetail.id,
-			title: mockGuideDetail.title,
+			id: mockGuideItem.id,
+			title: mockGuideItem.title,
 		});
 		expect(result.socialTitle).toBeUndefined();
 		expect(result.shortDescription).toBeUndefined();
 	});
 
 	it('should strip extra fields not in schema', async () => {
-		const mockGuideId = mockGuideDetail.id;
+		const mockGuideId = mockGuideItem.id;
 		const dataWithExtraFields = {
-			...mockGuideDetail,
+			...mockGuideItem,
 			extraField: 'should be removed',
 			anotherExtra: 123,
 			nestedExtra: { foo: 'bar' },
@@ -80,7 +80,7 @@ describe('getGuideItemById', () => {
 		);
 
 		const result = await getGuideItemById(mockGuideId);
-		const expectedResult = omit(mockGuideDetail, ['items']);
+		const expectedResult = omit(mockGuideItem, ['items']);
 
 		expect(mockedApi.fetchGuideItem).toHaveBeenCalledWith(mockGuideId);
 		expect(result).toEqual(expectedResult);
@@ -91,7 +91,7 @@ describe('getGuideItemById', () => {
 	});
 
 	it('should throw error when data validation fails', async () => {
-		const mockGuideId = mockGuideDetail.id;
+		const mockGuideId = mockGuideItem.id;
 		const mockApiResponse = {
 			data: {
 				invalidField: 'invalid',
@@ -109,7 +109,7 @@ describe('getGuideItemById', () => {
 	});
 
 	it('should handle empty response data', async () => {
-		const mockGuideId = mockGuideDetail.id;
+		const mockGuideId = mockGuideItem.id;
 		const mockApiResponse = {
 			data: {},
 			status: 200,
@@ -125,7 +125,7 @@ describe('getGuideItemById', () => {
 	});
 
 	it('should throw error when API call fails', async () => {
-		const mockGuideId = mockGuideDetail.id;
+		const mockGuideId = mockGuideItem.id;
 		const mockError = new Error('API Error');
 
 		mockedApi.fetchGuideItem.mockRejectedValue(mockError);
