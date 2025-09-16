@@ -27,8 +27,8 @@ describe('Tags', () => {
 
 		render(<Tags tags={tags} />);
 
-		const reactElements = screen.getAllByText('Guide');
-		expect(reactElements).toHaveLength(1);
+		const tagElements = screen.getAllByText('Guide');
+		expect(tagElements).toHaveLength(1);
 		expect(screen.getByText('Restaurant')).toBeInTheDocument();
 		expect(screen.getByText('LMWN')).toBeInTheDocument();
 	});

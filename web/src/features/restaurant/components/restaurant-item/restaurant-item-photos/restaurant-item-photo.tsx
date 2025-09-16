@@ -15,7 +15,7 @@ type RestaurantItemPhotoProps = {
 };
 
 function RestaurantItemPhoto({ alt, index, photo }: RestaurantItemPhotoProps) {
-	if (!photo) {
+	if (!photo.smallUrl && !photo.largeUrl) {
 		return null;
 	}
 
