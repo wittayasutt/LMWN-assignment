@@ -12,7 +12,7 @@ import { RestaurantItemPhoto } from '.';
 type RestaurantItemPhotosProps = {
 	alt: string;
 	className?: string;
-	photos: PhotoType[];
+	photos?: PhotoType[];
 };
 
 function RestaurantItemPhotos({
@@ -20,7 +20,7 @@ function RestaurantItemPhotos({
 	className,
 	photos,
 }: RestaurantItemPhotosProps) {
-	if (photos?.length === 0) {
+	if (!photos?.length) {
 		return null;
 	}
 

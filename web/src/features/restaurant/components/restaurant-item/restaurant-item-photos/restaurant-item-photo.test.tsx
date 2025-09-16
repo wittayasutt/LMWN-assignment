@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { PhotoType } from '@/types';
+
 import RestaurantItemPhoto from './restaurant-item-photo';
 
 const mockPhoto: PhotoType = {
