@@ -4,12 +4,20 @@ export type GuideItemPhotoProps = {
 	alt?: string;
 	photo?: PhotoType;
 	isTitle?: boolean;
+	isPriority?: boolean;
 };
 
-function GuideItemPhoto({ alt, photo, isTitle = false }: GuideItemPhotoProps) {
+function GuideItemPhoto({
+	alt,
+	photo,
+	isTitle = false,
+	isPriority = false,
+}: GuideItemPhotoProps) {
 	if (!photo?.smallUrl && !photo?.largeUrl) {
 		return null;
 	}
+
+	const isPriorityLoading = isTitle || isPriority;
 
 	return (
 		<img
@@ -18,7 +26,8 @@ function GuideItemPhoto({ alt, photo, isTitle = false }: GuideItemPhotoProps) {
 			srcSet={`${photo?.smallUrl ?? ''} 854w, ${photo?.largeUrl ?? ''} 1920w`}
 			sizes="(max-width: 1080px) 854px, 1920px"
 			alt={alt ?? ''}
-			loading={isTitle ? 'eager' : 'lazy'}
+			loading={isPriorityLoading ? 'eager' : 'lazy'}
+			fetchPriority={isPriorityLoading ? 'high' : 'auto'}
 		/>
 	);
 }

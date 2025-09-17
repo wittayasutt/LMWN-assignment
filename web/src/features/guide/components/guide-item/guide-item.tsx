@@ -9,9 +9,14 @@ import { GuideItemDescription, GuideItemPhoto } from './';
 type GuideItemProps = {
 	guide: GuideType;
 	isTitle?: boolean;
+	isPriority?: boolean;
 };
 
-function GuideItem({ guide, isTitle = false }: GuideItemProps) {
+function GuideItem({
+	guide,
+	isTitle = false,
+	isPriority = false,
+}: GuideItemProps) {
 	const titleClass =
 		'text-2xl font-medium mx-auto text-center mb-4 sm:text-3xl';
 
@@ -32,6 +37,7 @@ function GuideItem({ guide, isTitle = false }: GuideItemProps) {
 					alt={guide?.title}
 					photo={guide?.coverPhoto}
 					isTitle={isTitle}
+					isPriority={isPriority}
 				/>
 				<GuideItemDescription
 					description={guide?.description}

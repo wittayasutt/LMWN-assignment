@@ -10,7 +10,9 @@ function GuideList() {
 		return <p className="font-title text-center">ไม่พบข้อมูลลายแทง</p>;
 	}
 
-	return data.map((guide) => <GuideItem key={guide.id} guide={guide} />);
+	return data.map((guide, index) => (
+		<GuideItem key={guide.id} guide={guide} isPriority={index === 0} />
+	));
 }
 
 export default GuideList;
