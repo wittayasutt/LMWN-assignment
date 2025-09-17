@@ -1,47 +1,19 @@
 import { describe, it, expect } from 'vitest';
+import { mockRestaurant } from '@/mock';
 import { render, screen } from '@testing-library/react';
 import type { RestaurantType } from '@/types';
 
 import RestaurantItemDetail from './restaurant-item-detail';
 
-const mockRestaurant: RestaurantType = {
-	id: '1',
-	name: 'Test Restaurant',
-	phoneNo: '02-123-4567',
-	address: '123 Test Street, Bangkok',
-	lat: 13.7563,
-	lng: 100.5018,
-	categories: ['Thai', 'Seafood'],
-	delivery: true,
-	pickup: false,
-	description: 'Test description',
-	rating: 4.5,
-	numberOfReviews: 100,
-	official: true,
-	workingHours: [],
-	facebook: null,
-	instagram: null,
-	url: null,
-};
-
 describe('RestaurantItemDetail', () => {
 	it('renders null when restaurant has no relevant data', () => {
 		const emptyRestaurant: RestaurantType = {
-			id: '1',
-			name: 'Test Restaurant',
+			...mockRestaurant,
 			phoneNo: null,
 			address: null,
 			categories: undefined,
 			delivery: false,
 			pickup: false,
-			description: 'Test description',
-			rating: 4.5,
-			numberOfReviews: 100,
-			official: true,
-			workingHours: [],
-			facebook: null,
-			instagram: null,
-			url: null,
 		};
 
 		const { container } = render(
@@ -54,9 +26,9 @@ describe('RestaurantItemDetail', () => {
 	it('renders phone number with tel link when phoneNo is provided', () => {
 		render(<RestaurantItemDetail restaurant={mockRestaurant} />);
 
-		const phoneLink = screen.getByRole('link', { name: '02-123-4567' });
+		const phoneLink = screen.getByRole('link', { name: '0939164541' });
 		expect(phoneLink).toBeInTheDocument();
-		expect(phoneLink).toHaveAttribute('href', 'tel:02-123-4567');
+		expect(phoneLink).toHaveAttribute('href', 'tel:0939164541');
 		expect(screen.getByText('ติดต่อ:')).toBeInTheDocument();
 	});
 
@@ -75,12 +47,12 @@ describe('RestaurantItemDetail', () => {
 		render(<RestaurantItemDetail restaurant={mockRestaurant} />);
 
 		const addressLink = screen.getByRole('link', {
-			name: '123 Test Street, Bangkok',
+			name: '22, สำราญราษฎร์ สำราญราษฎร์ พระนคร กรุงเทพมหานคร',
 		});
 		expect(addressLink).toBeInTheDocument();
 		expect(addressLink).toHaveAttribute(
 			'href',
-			'https://www.google.com/maps/search/?api=1&query=13.7563,100.5018',
+			'https://www.google.com/maps/search/?api=1&query=13.752888635769,100.5034106411',
 		);
 		expect(addressLink).toHaveAttribute('target', '_blank');
 		expect(addressLink).toHaveAttribute('rel', 'noopener noreferrer');
@@ -96,9 +68,13 @@ describe('RestaurantItemDetail', () => {
 
 		render(<RestaurantItemDetail restaurant={restaurantWithoutCoords} />);
 
-		expect(screen.getByText('123 Test Street, Bangkok')).toBeInTheDocument();
 		expect(
-			screen.queryByRole('link', { name: '123 Test Street, Bangkok' }),
+			screen.getByText('22, สำราญราษฎร์ สำราญราษฎร์ พระนคร กรุงเทพมหานคร'),
+		).toBeInTheDocument();
+		expect(
+			screen.queryByRole('link', {
+				name: '22, สำราญราษฎร์ สำราญราษฎร์ พระนคร กรุงเทพมหานคร',
+			}),
 		).not.toBeInTheDocument();
 		expect(screen.getByText('ที่อยู่:')).toBeInTheDocument();
 	});
@@ -117,10 +93,9 @@ describe('RestaurantItemDetail', () => {
 	it('renders tags with categories and delivery/pickup options', () => {
 		render(<RestaurantItemDetail restaurant={mockRestaurant} />);
 
-		expect(screen.getByText('Thai')).toBeInTheDocument();
-		expect(screen.getByText('Seafood')).toBeInTheDocument();
+		expect(screen.getByText('ร้านกาแฟ/ชา')).toBeInTheDocument();
 		expect(screen.getByText('เดลิเวอรี่')).toBeInTheDocument();
-		expect(screen.queryByText('รับที่ร้าน')).not.toBeInTheDocument();
+		expect(screen.getByText('รับที่ร้าน')).toBeInTheDocument();
 	});
 
 	it('renders pickup tag when pickup is true', () => {
@@ -143,44 +118,40 @@ describe('RestaurantItemDetail', () => {
 		render(<RestaurantItemDetail restaurant={restaurantWithoutCategories} />);
 
 		expect(screen.getByText('เดลิเวอรี่')).toBeInTheDocument();
-		expect(screen.queryByText('Thai')).not.toBeInTheDocument();
-		expect(screen.queryByText('Seafood')).not.toBeInTheDocument();
+		expect(screen.getByText('รับที่ร้าน')).toBeInTheDocument();
+		expect(screen.queryByText('ร้านกาแฟ/ชา')).not.toBeInTheDocument();
 	});
 
 	it('renders only categories when delivery and pickup are both false', () => {
 		const restaurantWithoutDeliveryPickup = {
 			...mockRestaurant,
 			delivery: false,
+			pickup: false,
 		};
 
 		render(
 			<RestaurantItemDetail restaurant={restaurantWithoutDeliveryPickup} />,
 		);
 
-		expect(screen.getByText('Thai')).toBeInTheDocument();
-		expect(screen.getByText('Seafood')).toBeInTheDocument();
+		expect(screen.getByText('ร้านกาแฟ/ชา')).toBeInTheDocument();
 		expect(screen.queryByText('เดลิเวอรี่')).not.toBeInTheDocument();
 		expect(screen.queryByText('รับที่ร้าน')).not.toBeInTheDocument();
 	});
 
 	it('renders complete component with all sections when all data is provided', () => {
-		const completeRestaurant = {
-			...mockRestaurant,
-			pickup: true,
-		};
-
-		render(<RestaurantItemDetail restaurant={completeRestaurant} />);
+		render(<RestaurantItemDetail restaurant={mockRestaurant} />);
 
 		expect(screen.getByText('ติดต่อ:')).toBeInTheDocument();
 		expect(screen.getByText('ที่อยู่:')).toBeInTheDocument();
 		expect(
-			screen.getByRole('link', { name: '02-123-4567' }),
+			screen.getByRole('link', { name: '0939164541' }),
 		).toBeInTheDocument();
 		expect(
-			screen.getByRole('link', { name: '123 Test Street, Bangkok' }),
+			screen.getByRole('link', {
+				name: '22, สำราญราษฎร์ สำราญราษฎร์ พระนคร กรุงเทพมหานคร',
+			}),
 		).toBeInTheDocument();
-		expect(screen.getByText('Thai')).toBeInTheDocument();
-		expect(screen.getByText('Seafood')).toBeInTheDocument();
+		expect(screen.getByText('ร้านกาแฟ/ชา')).toBeInTheDocument();
 		expect(screen.getByText('เดลิเวอรี่')).toBeInTheDocument();
 		expect(screen.getByText('รับที่ร้าน')).toBeInTheDocument();
 	});
